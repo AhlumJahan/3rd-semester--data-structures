@@ -35,6 +35,17 @@ p->next=head;
 free(q);
 return head;
 }
+struct node *deleteanyindex(struct node *head,int index){
+    struct node *ptr=head;
+    struct node *p=head->next;
+    for(int i=0;i<index-1;i++){
+        ptr=ptr->next;
+        p=p->next;
+    }
+    ptr->next=p->next;
+    free(p);
+    return head;
+}
 int main(){
     struct node *head=NULL,*ptr=NULL,*newnode=NULL;
     int n,i,value;
@@ -64,6 +75,7 @@ lltraverse(head);
 printf("after delete\n");
 // head=deleteinitial(head);
 head=deletelast(head);
+    head=deleteanyindex(head,3);
 
 lltraverse(head);
 
@@ -71,3 +83,4 @@ lltraverse(head);
     
     return 0;
 }
+
